@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import pickle
+import gzip
 
 from sklearn.preprocessing import LabelEncoder
 
@@ -69,7 +70,9 @@ rf_model=rf_model.fit(X_train, Y_train)
 rf_predictions= rf_model.predict(X_test)
 
 
-pickle.dump(rf_model,open('credit1.pkl','wb'))
+filename="model.pickle"
+with open(filename,"wb") as file:
+   pickle.dump(rf_model,file)
 rf_Acc = accuracy_score(Y_test, rf_predictions)
 
  
