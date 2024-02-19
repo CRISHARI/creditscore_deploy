@@ -65,10 +65,11 @@ X_train,X_test,Y_train,Y_test = train_test_split(X,Y, test_size = 0.20, random_s
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 rf_model = RandomForestClassifier(n_estimators=1000,random_state=42)
-model=rf_model.fit(X_train, Y_train)
-rf_predictions= model.predict(X_test)
-rf_Acc = accuracy_score(Y_test, rf_predictions)
+rf_model=rf_model.fit(X_train, Y_train)
+rf_predictions= rf_model.predict(X_test)
 
-pickle.dump(model,open('credit.pkl','wb'))
+
+pickle.dump(rf_model,open('credit1.pkl','wb'))
+rf_Acc = accuracy_score(Y_test, rf_predictions)
 
  
