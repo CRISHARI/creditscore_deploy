@@ -1,0 +1,8 @@
+1.flask
+2.Gunicorn
+3.scikit-learn==1.3.0
+4.pandas
+5.numpy 
+6.pyarrow
+7.imbalanced-learn
+8.pickle

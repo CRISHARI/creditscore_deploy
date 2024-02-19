@@ -1,0 +1,196 @@
+!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Score Prediction</title>
+</head>
+
+<body>
+
+    <div style="color: #001f4d">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h1 id="heading">Predict the Credit Score of Customers</h1>
+
+<div class="card-title">
+            <h2>Age</h2>
+            <input class="input" name="Age" required="number" >
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Num_Bank_Accounts</h2>
+            <input class="input" name="Num_Bank_Accounts" required="number" >   
+                
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Num_Credit_Card</h2>
+            <input class="input" name="Num_Credit_Card" required="required">
+                    
+                
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Interest_Rate</h2>
+            <input class="input" name="Interest_Rate" required="required">
+                    
+            
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Num_of_Loan</h2>
+            <input class="input" name="Num_of_Loan" required="required">
+                    
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Delay_from_due_date</h2>
+            <input class="input" name="major_discipline" required="required">
+                  
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Annual_Income</h2>
+            <input class="input" name="Annual_Income" required="required" >
+</div>
+
+<br>
+<div class="card-title">
+    <h2>Num_of_Delayed_Payment</h2>
+    <input class="input" name="Num_of_Delayed_Payment" required="required">
+            
+</div>
+
+<br>
+
+<div class="card-title">
+     <h2>Changed_Credit_Limit</h2>
+     <input class="input" name="Changed_Credit_Limit" required="required">
+            
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Num_Credit_Inquiries</h2>
+                 <input class="input" name="Num_Credit_Inquiries" required="required" >
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Outstanding_Debt</h2>
+            <input class="input" name="Outstanding_Debt" required="required">
+</div>
+
+<br>
+
+<div class="card-title">
+            <h2>Credit_History_Age</h2>
+            <input class="input" name="Credit_History_Age" required="required">
+</div>  
+
+<br>
+
+<div class="card-title">
+            <h2>Payment_of_Min_Amount</h2>
+            <input class="input" name="Payment_of_Min_Amount" required="required">
+</div>
+
+<br>
+
+<div class="card-title">
+           <h2>Monthly_Balance</h2>
+           <input class="input" name="Monthly_Balance" required="required">
+</div>
+<br>
+<div class="card-title">
+    <h2>Credit Mix</h2>
+    <select class="input" name="Credit_Mix" required="required">
+             <option value="2">Standard</option>
+             <option value="1">Good</option>
+             <option value="0">Bad</option>
+      </select>
+    </div>
+            <br>
+            <button class="submit" type="submit">Submit</button>
+            <br>
+
+        </form>
+
+    </div>
+
+        <br><h1>{{ prediction_text }}</h1>
+
+
+    <style>
+        body {
+            background-image: url("https://img.freepik.com/free-photo/businessman-with-colorful-graph_1232-167.jpg?w=740&t=st=1704465039~exp=1704465639~hmac=fdd2af9774b02e26647c857fba3ae938ea8cc41ced2549b664ab4db248246fdd");
+            text-align: center;
+            padding: 0px;
+            background-position:center; background-repeat:no-repeat; background-size:cover;
+            margin:auto;
+        }
+        #heading{
+            line-height:80px;
+            color:white;
+            background-color:#0099ff;
+        }
+
+        h1{background-color:#f2f2f2}
+
+        h2{color:#003399;}
+        
+.card-title{
+background-color: #f2f2f2;
+padding:5px;
+margin-bottom:2px;
+border-radius:15px;
+width:600px;
+height:100px;
+margin:auto;
+}
+
+.input{
+width: 300px;
+
+height: 43px;
+
+text-align: center;
+
+border-radius: 16px;
+
+font-size: 18px;
+
+
+}
+
+.submit{
+width: 200px;
+
+height: 50px;
+
+text-align: center;
+
+border-radius: 16px;
+
+font-size: 18px;
+}
+
+    </style>
+</body>
+
+</html>
