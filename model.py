@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import pickle
 import gzip
-
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import LabelEncoder
 
 from sklearn.ensemble import RandomForestClassifier
@@ -64,7 +64,7 @@ from sklearn.model_selection import train_test_split
 
 Y= np.squeeze(Y)#squeeze() function is used to remove single-dimensional entries from the shape of an array.
 
-X_train,X_test,Y_train,Y_test = train_test_split(X,Y, test_size = 0.20, random_state=42,)
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y, test_size = 0.2, random_state=42,)
 
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
@@ -72,10 +72,13 @@ rf_model = RandomForestClassifier(n_estimators=1000,random_state=42)
 model=rf_model.fit(X_train, Y_train)
 rf_predictions= model.predict(X_test)
 
+pipeline = make_pipeline(MinMaxScaler(),RandomForestClassifier())
+
+model = pipeline.fit(X_train, Y_train)
+y_pred = model.predict(X_test)
 
 filename="model.pickle"
 with gzip.open(filename,"wb") as file:
    pickle.dump(model,file)
-rf_Acc = accuracy_score(Y_test, rf_predictions)
 
  
