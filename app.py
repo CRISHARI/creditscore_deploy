@@ -5,8 +5,8 @@ import pandas as pd
 import gzip
 
 app = Flask(__name__)
-with open("model.pickle","rb") as file:
-    model = pickle.load(file)
+with gzip.open("model.pickle","rb") as file:
+    rf_model = pickle.load(file)
 @app.route('/')
 def index():
 
@@ -35,7 +35,7 @@ def predict():
      Changed_Credit_Limit = float(request.form["Changed_Credit_Limit"])
 
 
-     prediction = model.predict(np.array([[Age,Annual_Income,Num_Bank_Accounts,Num_Credit_Card,Interest_Rate,Num_of_Loan,Delay_from_due_date,Num_of_Delayed_Payment,
+     prediction = rf_model.predict(np.array([[Age,Annual_Income,Num_Bank_Accounts,Num_Credit_Card,Interest_Rate,Num_of_Loan,Delay_from_due_date,Num_of_Delayed_Payment,
      Credit_Mix,Outstanding_Debt,Credit_History_Age,Payment_of_Min_Amount,Num_Credit_Inquiries,Changed_Credit_Limit,Payment_Behaviour,Monthly_Balance]]))[0]
      output = int(prediction)
      if (output == 0):

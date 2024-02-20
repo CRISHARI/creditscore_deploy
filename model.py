@@ -29,13 +29,16 @@ data["Delay_from_due_date"] = data["Delay_from_due_date"].astype(int)
 data1 = data.drop(columns=['ID','Customer_ID','Name','Month','Type_of_Loan','SSN','Amount_invested_monthly','Occupation','Credit_Utilization_Ratio','Total_EMI_per_month','Monthly_Inhand_Salary'])
 
 
-#label encoding
-from sklearn.preprocessing import LabelEncoder
-le= LabelEncoder()
-data1['Credit_Score'] = le.fit_transform(data1['Credit_Score'])
-data1['Payment_of_Min_Amount'] = le.fit_transform(data1['Payment_of_Min_Amount'])
-data1['Credit_Mix'] = le.fit_transform(data1['Credit_Mix'])
-data1['Payment_Behaviour'] = le.fit_transform(data1['Payment_Behaviour'])
+CreditScore ={"Good" :0,"Poor":1,"Standard":2}
+data1["Credit_Score"] = data1["Credit_Score"].map(CreditScore)
+PaymentBehaviour={"Low_spent_Small_value_payments":5,"High_spent_Medium_value_payments":1,
+                   "High_spent_Large_value_payments":0,"Low_spent_Medium_value_payments":4,
+                   "High_spent_Small_value_payments":2,"Low_spent_Large_value_payments":3}
+data1["Payment_Behaviour"] =data1["Payment_Behaviour"].map(PaymentBehaviour)
+PaymentofMinAmount ={"Yes":2,"No":1,"NM":0}
+data1["Payment_of_Min_Amount"]=data1["Payment_of_Min_Amount"].map(PaymentofMinAmount)
+CreditMix = {"Standard":2,"Good":1,"Bad":0}
+data1["Credit_Mix"]=data1["Credit_Mix"].map(CreditMix)
 
 
 
@@ -66,13 +69,13 @@ X_train,X_test,Y_train,Y_test = train_test_split(X,Y, test_size = 0.20, random_s
 from sklearn.metrics import accuracy_score
 from sklearn.ensemble import RandomForestClassifier
 rf_model = RandomForestClassifier(n_estimators=1000,random_state=42)
-rf_model=rf_model.fit(X_train, Y_train)
-rf_predictions= rf_model.predict(X_test)
+model=rf_model.fit(X_train, Y_train)
+rf_predictions= model.predict(X_test)
 
 
 filename="model.pickle"
-with open(filename,"wb") as file:
-   pickle.dump(rf_model,file)
+with gzip.open(filename,"wb") as file:
+   pickle.dump(model,file)
 rf_Acc = accuracy_score(Y_test, rf_predictions)
 
  
